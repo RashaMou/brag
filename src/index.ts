@@ -1,4 +1,5 @@
 import { Command } from "commander";
+import { registerCommands } from "./commands/index.js";
 
 const program = new Command();
 
@@ -7,11 +8,6 @@ program
   .description("A CLI tool to brag about your achievements")
   .version("1.0.0");
 
-program
-  .command("list")
-  .description("List all items")
-  .action(() => {
-    console.log("Listing items...");
-  });
+registerCommands(program);
 
 program.parse();
