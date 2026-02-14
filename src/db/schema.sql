@@ -1,0 +1,29 @@
+CREATE TABLE IF NOT EXISTS entries (
+    id integer PRIMARY KEY AUTOINCREMENT,
+    text text NOT NULL,
+    date text NOT NULL, -- ISO8601 format (YYYY-MM-DD)
+    created_at text NOT NULL, -- When it was logged
+    category_id integer,
+    source text, -- 'manual', 'github', 'jira'
+    source_id text, -- PR number, ticket ID, etc.
+    source_url text, -- Link back to original
+    FOREIGN KEY (category_id) REFERENCES categories (id),
+    FOREIGN KEY (type_id) REFERENCES types (id)
+);
+
+CREATE TABLE IF NOT EXISTS categories (
+    id integer PRIMARY KEY AUTOINCREMENT,
+    name text NOT NULL UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS config (
+    key TEXT PRIMARY KEY,
+    value text NOT NULL
+);
+
+INSERT OR IGNORE INTO categories (name) VALUES 
+  ('bug-fix'),
+  ('feature'),
+  ('documentation'),
+  ('investigation'),
+
