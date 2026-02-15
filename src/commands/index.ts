@@ -7,6 +7,7 @@ import { listCategories } from "./listCategories.js";
 import { deleteCategory } from "./deleteCategory.js";
 import { deleteEntry } from "./deleteEntry.js";
 import { filterByCategory } from "./filter.js";
+import { configCommand } from "./config.js";
 
 export function registerCommands(program: Command) {
   addCommand(program);
@@ -17,4 +18,5 @@ export function registerCommands(program: Command) {
   deleteCategory(program);
   deleteEntry(program);
   filterByCategory(program);
+  configCommand(program);
 }
