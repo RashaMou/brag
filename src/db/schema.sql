@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS entries (
     impact text,
     source_id text, -- PR number, ticket ID, etc.
     source_url text, -- Link back to original
+    details text,
     FOREIGN KEY (category_id) REFERENCES categories (id)
 );
 
