@@ -8,6 +8,7 @@ import { configCommand } from "./config.js";
 import { jiraCommand } from "./jira.js";
 import { categoryCommand } from "./category.js";
 import { statsCommand } from "./stats.js";
+import { initCommand } from "./init.js";
 
 export function registerCommands(program: Command) {
   addCommand(program);
@@ -19,4 +20,5 @@ export function registerCommands(program: Command) {
   jiraCommand(program);
   categoryCommand(program);
   statsCommand(program);
+  initCommand(program);
 }
