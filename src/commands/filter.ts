@@ -12,7 +12,7 @@ interface Category {
 export function filterByCategory(program: Command) {
   program
     .command("filter")
-    .description("filter by category")
+    .description("filter entries by category")
     .action(async () => {
       await filterCat();
     });
