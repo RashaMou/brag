@@ -19,12 +19,8 @@ CREATE TABLE IF NOT EXISTS jira_tickets (
     id integer PRIMARY KEY AUTOINCREMENT,
     ticket_key text NOT NULL UNIQUE,
     summary text NOT NULL,
-    description text,
-    status text,
     resolved_at text,
-    url text,
-    fetched_at text NOT NULL,
-    imported boolean DEFAULT 0
+    url text
 );
 
 CREATE TABLE IF NOT EXISTS config (
