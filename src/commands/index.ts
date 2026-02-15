@@ -5,6 +5,7 @@ import { editEntry } from "./edit.js";
 import { editCategory } from "./editCategory.js";
 import { listCategories } from "./listCategories.js";
 import { deleteCategory } from "./deleteCategory.js";
+import { deleteEntry } from "./deleteEntry.js";
 
 export function registerCommands(program: Command) {
   addCommand(program);
@@ -13,4 +14,5 @@ export function registerCommands(program: Command) {
   editCategory(program);
   listCategories(program);
   deleteCategory(program);
+  deleteEntry(program);
 }
