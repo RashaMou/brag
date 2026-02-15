@@ -7,6 +7,7 @@ import { filterByCategory } from "./filter.js";
 import { configCommand } from "./config.js";
 import { jiraCommand } from "./jira.js";
 import { categoryCommand } from "./category.js";
+import { statsCommand } from "./stats.js";
 
 export function registerCommands(program: Command) {
   addCommand(program);
@@ -17,4 +18,5 @@ export function registerCommands(program: Command) {
   configCommand(program);
   jiraCommand(program);
   categoryCommand(program);
+  statsCommand(program);
 }
