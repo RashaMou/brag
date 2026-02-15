@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS entries (
     created_at text NOT NULL, -- When it was logged
     category_id integer,
     impact text,
-    source text, -- 'manual', 'github', 'jira'
     source_id text, -- PR number, ticket ID, etc.
     source_url text, -- Link back to original
     FOREIGN KEY (category_id) REFERENCES categories (id)

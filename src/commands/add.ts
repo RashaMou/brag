@@ -6,6 +6,7 @@ interface AddOptions {
   category?: string;
   date?: string;
   impact?: "low" | "medium" | "high";
+  sourceurl?: string;
 }
 
 export function addCommand(program: Command) {
@@ -13,6 +14,7 @@ export function addCommand(program: Command) {
     .command("add <text>")
     .description("Add a new entry")
     .option("-c, --category <name>", "category name")
+    .option("-s, --sourceurl <url>", "source url")
     .option("-d, --date <date>", "date (defaults to today, format: YYYY-MM-DD)")
     .addOption(
       new Option("-i, --impact <level>", "impact level").choices([
@@ -46,8 +48,8 @@ function add(text: string, options: AddOptions) {
   }
 
   const stmt = db.prepare(`
-    INSERT INTO entries (text, date, created_at, category_id, impact, source)
-    VALUES (?, ?, ?, ?, ?, 'manual')
+    INSERT INTO entries (text, date, created_at, category_id, impact, source_url)
+    VALUES (?, ?, ?, ?, ?, ?)
   `);
 
   stmt.run(
@@ -56,6 +58,7 @@ function add(text: string, options: AddOptions) {
     new Date().toISOString(),
     categoryId,
     options.impact || null,
+    options.sourceurl || null,
   );
 
   console.log(chalk.green("✓ Entry added"));
