@@ -28,9 +28,3 @@ CREATE TABLE IF NOT EXISTS config (
     value text NOT NULL
 );
 
-INSERT
-    OR IGNORE INTO categories (name)
-        VALUES ('bug-fix'),
-        ('feature'),
-        ('documentation'),
-        ('investigation')
