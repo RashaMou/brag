@@ -175,3 +175,9 @@ This is built for my specific needs. To adapt it:
 ## License
 
 MIT - do whatever you want with it
+
+## TODO
+
+- [ ] filter should have a -v option
+- [ ] when listing multiple entries, include a pager
+- [ ] modify what to show in table for list command
