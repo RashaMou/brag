@@ -13,7 +13,7 @@
     "bin",
     "dist"
   ],
-  "packageManager": "pnpm@10.29.1",
+  "packageManager": "pnpm@10.30.0",
   "type": "module",
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
@@ -31,6 +31,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.3.1",
     "ora": "^9.3.0",
+    "wrap-ansi": "^9.0.2",
     "zod": "^4.3.6"
   },
   "pnpm": {
