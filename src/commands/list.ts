@@ -3,18 +3,21 @@ import db from "../db/database.js";
 import Table from "cli-table3";
 import chalk from "chalk";
 import { printField } from "../lib/printFields.js";
+import { showSingleEntry } from "./show.js";
 
 interface ListOptions {
   all?: boolean;
   week?: boolean;
   month?: boolean;
   verbose?: boolean;
+  id?: number;
 }
 
 export function listEntries(program: Command) {
   program
     .command("list")
     .description("List entries")
+    .option("--id <id>", "show specific entry by id")
     .option("-a, --all", "show all entries")
     .option("-w, --week", "this week")
     .option("-m, --month", "this month")
@@ -38,6 +41,11 @@ function list(options: ListOptions) {
     FROM entries e
     LEFT JOIN categories c ON e.category_id = c.id
   `;
+
+  if (options.id) {
+    showSingleEntry(options.id);
+    return;
+  }
 
   if (options.week) {
     query += " WHERE e.date >= DATE('now', '-7 days')";

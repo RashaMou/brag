@@ -10,7 +10,10 @@ export function printField(
   options?: { header?: boolean; fieldColor?: (text: string) => string },
 ) {
   if (options?.header) {
+    console.log();
     console.log(chalk.blue.bold(label));
+    console.log(chalk.gray("─".repeat(MAX_WIDTH)));
+
     return;
   }
 
