@@ -10,6 +10,7 @@ import { categoryCommand } from "./category.js";
 import { statsCommand } from "./stats.js";
 import { initCommand } from "./init.js";
 import { showEntry } from "./show.js";
+import { cacheCommand } from "./cache.js";
 
 export function registerCommands(program: Command) {
   addCommand(program);
@@ -23,4 +24,5 @@ export function registerCommands(program: Command) {
   statsCommand(program);
   initCommand(program);
   showEntry(program);
+  cacheCommand(program);
 }

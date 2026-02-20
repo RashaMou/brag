@@ -119,7 +119,7 @@ async function syncJira() {
   console.log(chalk.green(`✓ Cached ${issues.length} Jira tickets`));
 }
 
-function listJiraTickets() {
+export function listJiraTickets() {
   const tickets = db
     .prepare("SELECT * FROM jira_tickets ORDER BY resolved_at DESC")
     .all() as JiraTicket[];
