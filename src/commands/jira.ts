@@ -100,8 +100,16 @@ async function syncJira() {
   VALUES (?, ?, ?, ?)
 `);
 
-  const insertMany = db.transaction((issues) => {
-    for (const issue of issues) {
+  // Filter out already-imported tickets
+  const newIssues = issues.filter((issue: JiraIssue) => {
+    const existing = db
+      .prepare("SELECT id FROM entries WHERE source_id = ?")
+      .get(issue.key);
+    return !existing;
+  });
+
+  const insertMany = db.transaction((newIssues) => {
+    for (const issue of newIssues) {
       insert.run(issue.key, issue.summary, issue.completedAt, issue.url);
     }
   });
