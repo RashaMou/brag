@@ -121,7 +121,9 @@ async function syncJira() {
 
 export function listJiraTickets() {
   const tickets = db
-    .prepare("SELECT * FROM jira_tickets ORDER BY resolved_at DESC")
+    .prepare(
+      "SELECT * FROM jira_tickets WHERE status IS NULL ORDER BY resolved_at DESC",
+    )
     .all() as JiraTicket[];
 
   if (tickets.length === 0) {

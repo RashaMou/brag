@@ -31,7 +31,7 @@ export function cacheCommand(program: Command) {
 
 function clearCacheByKey(key: string) {
   const result = db
-    .prepare("DELETE FROM jira_tickets WHERE ticket_key = ?")
+    .prepare("UPDATE jira_tickets SET status = 'skipped' WHERE ticket_key = ?")
     .run(key);
 
   if (result.changes === 0) {
