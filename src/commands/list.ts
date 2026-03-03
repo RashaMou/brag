@@ -18,7 +18,6 @@ export function listEntries(program: Command) {
     .command("list")
     .description("List entries")
     .option("--id <id>", "show specific entry by id")
-    .option("-a, --all", "show all entries")
     .option("-w, --week", "this week")
     .option("-m, --month", "this month")
     .option("-v, --verbose", "show full entry details")
@@ -51,9 +50,6 @@ function list(options: ListOptions) {
     query += " WHERE e.date >= DATE('now', '-7 days')";
   } else if (options.month) {
     query += " WHERE e.date >= DATE('now', 'start of month')";
-  } else if (!options.all) {
-    // Default: last 7 days
-    query += " WHERE e.date >= DATE('now', '-7 days')";
   }
 
   query += " ORDER BY e.date DESC";
