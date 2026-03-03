@@ -95,9 +95,11 @@ async function add(text: string, options: AddOptions) {
     sourceUrl = urlInput || null;
   }
 
+  const sourceId = sourceUrl ? sourceUrl.split("/").pop() : null;
+
   const stmt = db.prepare(`
-    INSERT INTO entries (text, date, created_at, category_id, impact, details, source_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO entries (text, date, created_at, category_id, impact, details, source_url, sourceId)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   stmt.run(
@@ -108,6 +110,7 @@ async function add(text: string, options: AddOptions) {
     impact || null,
     details || null,
     sourceUrl,
+    sourceId,
   );
 
   console.log(chalk.green("✓ Entry added"));
