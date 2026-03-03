@@ -102,10 +102,17 @@ async function syncJira() {
 
   // Filter out already-imported tickets
   const newIssues = issues.filter((issue: JiraIssue) => {
-    const existing = db
+    // Check if already imported
+    const inEntries = db
       .prepare("SELECT id FROM entries WHERE source_id = ?")
       .get(issue.key);
-    return !existing;
+
+    // Check if already in cache
+    const inCache = db
+      .prepare("SELECT id FROM jira_tickets WHERE ticket_key = ?")
+      .get(issue.key);
+
+    return !inEntries && !inCache;
   });
 
   const insertMany = db.transaction((newIssues) => {
@@ -114,7 +121,7 @@ async function syncJira() {
     }
   });
 
-  insertMany(issues);
+  insertMany(newIssues);
 
   console.log(chalk.green(`✓ Cached ${issues.length} Jira tickets`));
 }
