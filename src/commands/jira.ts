@@ -215,9 +215,13 @@ async function importJiraTicket(ticketId: string) {
     ],
   });
 
+  const details = await input({
+    message: "Details:",
+  });
+
   const stmt = db.prepare(`
-    INSERT INTO entries (text, date, created_at, category_id, impact, source_id, source_url)
-    VALUES (?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO entries (text, date, created_at, category_id, impact, source_id, source_url, details)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
   `);
 
   stmt.run(
@@ -230,6 +234,7 @@ async function importJiraTicket(ticketId: string) {
     impact,
     ticket.ticket_key,
     ticket.url,
+    details,
   );
 
   db.prepare("DELETE FROM jira_tickets WHERE ticket_key = ?").run(ticketId);
